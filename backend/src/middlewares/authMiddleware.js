@@ -9,7 +9,7 @@ export const validateAuthCookie = ( allowedTypes =[]) => {
                 return res.status(403).json({message: "Noo cookie for authorization required"});
             }
             const decoded = jsonwebtoken.verify(authCookie, config.JWT.secret);
-            if(!allowedTypes.includes(decoded.type)) {
+            if(!allowedTypes.includes(decoded.userType)) {
                 return res.status(402).json({message: "Access denied"});
             }
             next();
