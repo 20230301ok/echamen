@@ -14,7 +14,7 @@ boletoController.getBoleto = async (req, res) => {
 
 boletoController.deleteBoleto = async (req, res) => {
     try {
-        const deleteBoleto = boletoModel.findByIdAndDelete(req.params.id);
+        const deletedBoleto = await boletoModel.findByIdAndDelete(req.params.id);
         if(!deletedBoleto){
             return res.status(404).json({message: "Boleto no encontrado"})
         }
@@ -50,7 +50,7 @@ boletoController.updateBoleto =async (req, res) => {
     console.log("error" + error);
     return res.status(500).json({message: "Internal server error"})
 }
-
+return res.status(200).json({message: "Boleto actualizado"})
 }
 
 boletoController.insertBoleto = async (req, res) => {

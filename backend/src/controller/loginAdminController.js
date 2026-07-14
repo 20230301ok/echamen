@@ -15,7 +15,7 @@ loginAdminController.login = async (req, res) => {
         if(!adminFound){
             return res.status(400).json({message: "Admin not found"});
         }
-        if (adminFound.timeOut&&adminFound.timeOut > Datenow()){
+        if (adminFound.timeOut&&adminFound.timeOut > Date.now()){
             return res.status(403).json({message: "Blocked account"});
         }
 
@@ -40,7 +40,7 @@ loginAdminController.login = async (req, res) => {
         adminFound.loginAttemps = 0;
         adminFound.timeOut = null;
 
-        const token = jsonwebtokenerror.sign(
+        const token = jsonwebtoken.sign(
             {id: adminFound._id, userType: "Admin"},
             config.JWT.secret,
             {expiresIn: "30d"},

@@ -14,7 +14,7 @@ loginCustomerController.login = async (req, res) => {
         if(!customerFound){
             return res.status(400).json({message: "Customer not found"});
         }
-        if (customerFound.timeOut&&customerFound.timeOut > Datenow()){
+        if (customerFound.timeOut&&customerFound.timeOut > Date.now()){
             return res.status(403).json({message: "Blocked account"});
         }
 
@@ -39,8 +39,8 @@ loginCustomerController.login = async (req, res) => {
         customerFound.loginAttemps = 0;
         customerFound.timeOut = null;
 
-        const token = jsonwebtokenerror.sign(
-            {id: customerFound._id, userType: "customer"},
+        const token = jsonwebtoken.sign(
+            {id: customerFound._id, userType: "Customer"},
             config.JWT.secret,
             {expiresIn: "30d"},
         );

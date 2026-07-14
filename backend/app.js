@@ -29,8 +29,8 @@ app.use("/api/adminsLogin", loginAdminRoutes);
 app.use("/api/customersLogin", loginCustomerRoutes);
 app.use("/api/adminsRegister", registerAdminRoutes);
 app.use("/api/customersRegister", registerCustomerRoutes);
-app.use("/api/logout", registerCustomerRoutes);
+app.use("/api/logout", logoutRoutes);
 app.use("/api/wompi", wompiRoutes);
-app.use("/api/boletos", validateAuthCookie(["admin, customer"]), boletosRoutes);
+app.use("/api/boletos", validateAuthCookie(["Admin, Customer"]), boletosRoutes);
 
 export default app;
